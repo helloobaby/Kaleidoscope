@@ -1,0 +1,3 @@
+#!/bin/bash
+/usr/bin/clang++-18 -g -std=c++20 -fexperimental-library -c $(/usr/lib/llvm-18/bin/llvm-config --cxxflags --ldflags  --system-libs --libs core mcjit native) -stdlib=libstdc++ -std=c++20 mytoy.cpp -o mytoy.o
+/usr/bin/clang++-18 -std=c++20 -fexperimental-library mytoy.o $(/usr/lib/llvm-18/bin/llvm-config --cxxflags --ldflags --system-libs --libs core mcjit native) -stdlib=libstdc++ -std=c++20 -lpthread -lncurses -o mytoy
