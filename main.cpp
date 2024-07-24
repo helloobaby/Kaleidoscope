@@ -20,6 +20,7 @@
 #include <memory>
 #include <ranges>
 #include <string_view>
+#include <filesystem>
 
 static int IndentationCheck=0;
 
@@ -77,7 +78,18 @@ std::unique_ptr<PrototypeAST> ParsePrototype(std::string& code) {
 
 
 int main(int argc,char* argv[]){
-    std::ifstream source("test1.py");
+    if (argc != 2)
+    {
+        std::cout << "arguments must be 2\n";
+        return 0;
+    }
+
+    if (!std::filesystem::exists(argv[1])){
+        std::cout << "file " << argv[1] << "is not exist\n";
+        return 0;
+    }
+    
+    std::ifstream source(argv[1]);
     std::string code;
 
     RegexPatterns re;
